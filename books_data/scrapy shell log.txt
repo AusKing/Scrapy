@@ -1,0 +1,131 @@
+D:\python 2.0\webscriping or webcrowling\Framework - Scrapy\books_data>scrapy shell "https://books.toscrape.com/catalogue/category/books/travel_2/index.html"
+
+In [1]: response.css("title")
+Out[1]: [<Selector query='descendant-or-self::title' data='<title>\n    Travel | \n     Books to S...'>]
+
+In [3]: response.css(".product_pod")
+Out[3]:
+[<Selector query="descendant-or-self::*[@class and contains(concat(' ', normalize-space(@class), ' '), ' product_pod ')]" data='<article class="product_pod">\n       ...'>,
+ <Selector query="descendant-or-self::*[@class and contains(concat(' ', normalize-space(@class), ' '), ' product_pod ')]" data='<article class="product_pod">\n       ...'>,
+ <Selector query="descendant-or-self::*[@class and contains(concat(' ', normalize-space(@class), ' '), ' product_pod ')]" data='<article class="product_pod">\n       ...'>,
+ <Selector query="descendant-or-self::*[@class and contains(concat(' ', normalize-space(@class), ' '), ' product_pod ')]" data='<article class="product_pod">\n       ...'>,
+ <Selector query="descendant-or-self::*[@class and contains(concat(' ', normalize-space(@class), ' '), ' product_pod ')]" data='<article class="product_pod">\n       ...'>,
+ <Selector query="descendant-or-self::*[@class and contains(concat(' ', normalize-space(@class), ' '), ' product_pod ')]" data='<article class="product_pod">\n       ...'>,
+ <Selector query="descendant-or-self::*[@class and contains(concat(' ', normalize-space(@class), ' '), ' product_pod ')]" data='<article class="product_pod">\n       ...'>,
+ <Selector query="descendant-or-self::*[@class and contains(concat(' ', normalize-space(@class), ' '), ' product_pod ')]" data='<article class="product_pod">\n       ...'>,
+ <Selector query="descendant-or-self::*[@class and contains(concat(' ', normalize-space(@class), ' '), ' product_pod ')]" data='<article class="product_pod">\n       ...'>,
+ <Selector query="descendant-or-self::*[@class and contains(concat(' ', normalize-space(@class), ' '), ' product_pod ')]" data='<article class="product_pod">\n       ...'>,
+ <Selector query="descendant-or-self::*[@class and contains(concat(' ', normalize-space(@class), ' '), ' product_pod ')]" data='<article class="product_pod">\n       ...'>]
+
+In [4]: response.css(".product_pod").getall()
+Out[4]: (big output)
+
+In [5]: response.css(".product_pod")[0].get()
+Out[5]: '<article class="product_pod">\n        \n            <div class="image_container">\n                \n                    \n                    <a href="../../../its-only-the-himalayas_981/index.html"><img src="../../../../media/cache/27/a5/27a53d0bb95bdd88288eaf66c9230d7e.jpg" alt="It\'s Only the Himalayas" class="thumbnail"></a>\n                    \n                \n            </div>\n        \n\n        \n            \n                <p class="star-rating Two">\n                    <i class="icon-star"></i>\n                    <i class="icon-star"></i>\n                    <i class="icon-star"></i>\n                    <i class="icon-star"></i>\n                    <i class="icon-star"></i>\n                </p>\n            \n        \n\n        \n            <h3><a href="../../../its-only-the-himalayas_981/index.html" title="It\'s Only the Himalayas">It\'s Only the Himalayas</a></h3>\n        \n\n        \n            <div class="product_price">\n                \n\n\n\n\n\n\n    \n        <p class="price_color">£45.17</p>\n    \n\n<p class="instock availability">\n    <i class="icon-ok"></i>\n    \n        In stock\n    \n</p>\n\n                \n                    \n\n\n\n\n\n\n    \n    <form>\n        <button type="submit" class="btn btn-primary btn-block" data-loading-text="Adding...">Add to basket</button>\n    </form>\n\n\n                \n            </div>\n        \n    </article>'
+
+In [10]: response.css(".product_pod")[0].css("h3 a::text").get()
+Out[10]: "It's Only the Himalayas"
+
+In [11]: response.css(".product_pod")[0].css("h3>a::text").get()
+Out[11]: "It's Only the Himalayas"
+
+In [13]: response.css(".product_pod")[0].css(".image_container").get()
+Out[13]: '<div class="image_container">\n                \n                    \n                    <a href="../../../its-only-the-himalayas_981/index.html"><img src="../../../../media/cache/27/a5/27a53d0bb95bdd88288eaf66c9230d7e.jpg" alt="It\'s Only the Himalayas" class="thumbnail"></a>\n                    \n                \n            </div>'
+
+In [14]: response.css(".product_pod")[0].css(".image_container").css("img").get()
+Out[14]: '<img src="../../../../media/cache/27/a5/27a53d0bb95bdd88288eaf66c9230d7e.jpg" alt="It\'s Only the Himalayas" class="thumbnail">'
+
+In [15]: response.css(".product_pod")[0].css(".image_container").css("img src").get()
+
+In [16]: response.css(".product_pod")[0].css(".image_container").css("img src").get()
+
+In [17]: response.css(".product_pod")[0].css(".image_container").css("img::text").get()
+
+In [18]: response.css(".product_pod")[0].css(".image_container img").get()
+Out[18]: '<img src="../../../../media/cache/27/a5/27a53d0bb95bdd88288eaf66c9230d7e.jpg" alt="It\'s Only the Himalayas" class="thumbnail">'
+
+In [20]: response.css(".product_pod")[0].css(".image_container img").attrib['src']
+Out[20]: '../../../../media/cache/27/a5/27a53d0bb95bdd88288eaf66c9230d7e.jpg'
+
+In [21]: response.css(".product_pod")[0].css(".star-rating").get()
+Out[21]: '<p class="star-rating Two">\n                    <i class="icon-star"></i>\n                    <i class="icon-star"></i>\n                    <i class="icon-star"></i>\n                    <i class="icon-star"></i>\n                    <i class="icon-star"></i>\n                </p>'
+
+In [22]: response.css(".product_pod")[0].css(".star-rating").attrib['class']
+Out[22]: 'star-rating Two'
+
+In [25]: response.css(".product_pod")[0].css(".star-rating").attrib['class'].split(' ')
+Out[25]: ['star-rating', 'Two']
+
+In [26]: response.css(".product_pod")[0].css(".star-rating").attrib['class'].split(' ')[-1]
+Out[26]: 'Two'
+
+In [28]: response.css(".product_pod")[0].css(".price_color").get()
+Out[28]: '<p class="price_color">£45.17</p>'
+
+In [29]: response.css(".product_pod")[0].css(".price_color::text").get()
+Out[29]: '£45.17'
+
+In [30]: response.css(".product_pod")[0].css(".price_color").attrib['class']
+Out[30]: 'price_color'
+
+In [33]: response.css(".product_pod")[0].css(".instock").get()
+Out[33]: '<p class="instock availability">\n    <i class="icon-ok"></i>\n    \n        In stock\n    \n</p>'
+
+In [34]: response.css(".product_pod")[0].css(".instock i").get()
+Out[34]: '<i class="icon-ok"></i>'
+
+In [35]: response.css(".product_pod")[0].css(".instock i").attrib
+Out[35]: {'class': 'icon-ok'}
+
+In [36]: response.css(".product_pod")[0].css(".instock").attrib
+Out[36]: {'class': 'instock availability'}
+
+In [37]: response.css(".product_pod")[0].css(".instock i").attrib
+Out[37]: {'class': 'icon-ok'}
+
+In [38]: response.css(".product_pod")[0].css(".instock i").attrib['class']
+Out[38]: 'icon-ok'
+
+In [39]: response.css(".product_pod")[0].css(".instock i").attrib['class'].split('-')[-1]
+Out[39]: 'ok'
+
+In [40]: response.css(".product_pod")[0].css(".instock").get()
+Out[40]: '<p class="instock availability">\n    <i class="icon-ok"></i>\n    \n        In stock\n    \n</p>'
+
+In [41]: response.css(".product_pod")[0].css(".instock::text").get()
+Out[41]: '\n    '
+
+In [42]: response.css(".product_pod")[0].css(".instock::text").getall()
+Out[42]: ['\n    ', '\n    \n        In stock\n    \n']
+
+In [43]: response.css(".product_pod")[0].css(".instock::text").getall()[-1].split('\n')
+Out[43]: ['', '    ', '        In stock', '    ', '']
+
+In [44]: response.css(".product_pod")[0].css(".instock::text").getall()[-1].split('\n')[-3]
+Out[44]: '        In stock'
+
+In [45]: response.css(".product_pod")[0].css(".instock::text").getall()[-1].split('\n')[-3].split(' ')
+Out[45]: ['', '', '', '', '', '', '', '', 'In', 'stock']
+
+In [46]: response.css(".product_pod")[0].css(".instock::text").getall()[-1].split('\n')[-3].split(' ')[-2:-1]
+Out[46]: ['In']
+
+In [47]: response.css(".product_pod")[0].css(".instock::text").getall()[-1].split('\n')[-3].split(' ')[-2:]
+Out[47]: ['In', 'stock']
+
+In [49]: response.css(".product_pod")[0].css(".instock::text").getall()[-1]
+Out[49]: '\n    \n        In stock\n    \n'
+
+In [50]: response.css(".product_pod")[0].css(".instock::text").getall()[-1].replace(' ', '').replace('\n', '')
+Out[50]: 'Instock'
+
+In [51]: response.css(".product_pod")[0].css(".instock::text").getall()[-1].split('\n')[-3].replace(' ', '')
+Out[51]: 'Instock'
+
+In [52]: response.css(".product_pod")[0].css(".instock .icon-ok")
+Out[52]: [<Selector query="descendant-or-self::*[@class and contains(concat(' ', normalize-space(@class), ' '), ' instock ')]/descendant-or-self::*/*[@class and contains(concat(' ', normalize-space(@class), ' '), ' icon-ok ')]" data='<i class="icon-ok"></i>'>]
+
+In [53]: len(response.css(".product_pod")[0].css(".instock .icon-ok"))
+Out[53]: 1
+
+In [54]: quit()
